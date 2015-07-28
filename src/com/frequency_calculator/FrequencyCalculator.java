@@ -19,6 +19,7 @@ public class FrequencyCalculator {
 		String word = scanner.nextLine();
 		while (!word.equals("quit")) {
 			if (word != null && !word.isEmpty()) {
+				word = word.toLowerCase();
 				String highestFrequencyLetter = String
 						.valueOf(getHighestFrequencyLetter(word));
 				if (highestFrequencyLetter.trim().equals("")) {
@@ -65,6 +66,13 @@ public class FrequencyCalculator {
 				if (count > maxCount) {
 					maxCount = count;
 					highestFrequencyChar = c;
+				} else if (count == maxCount) {
+					// if equal return the first in the alphabetical order
+					for (Character key : hashMap.keySet()) {
+						if (key < highestFrequencyChar) {
+							highestFrequencyChar = key;
+						}
+					}
 				}
 			}
 		}
